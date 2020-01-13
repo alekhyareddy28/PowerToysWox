@@ -11,6 +11,8 @@
 #include <functional>
 #include <common/common.h>
 
+extern "C" IMAGE_DOS_HEADER __ImageBase;
+
 namespace std
 {
     template<> struct hash<GUID>
@@ -152,12 +154,12 @@ IFACEMETHODIMP_(void) FancyZones::Run() noexcept
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.lpfnWndProc = s_WndProc;
     wcex.hInstance = m_hinstance;
-    wcex.lpszClassName = L"SuperFancyZones";
+    wcex.lpszClassName = GET_RESOURCE_STRING(IDS_WINDOW_CLASSNAME).c_str();
     RegisterClassExW(&wcex);
 
     BufferedPaintInit();
 
-    m_window = CreateWindowExW(WS_EX_TOOLWINDOW, L"SuperFancyZones", L"", WS_POPUP, 0, 0, 0, 0, nullptr, nullptr, m_hinstance, this);
+    m_window = CreateWindowExW(WS_EX_TOOLWINDOW, GET_RESOURCE_STRING(IDS_WINDOW_CLASSNAME).c_str(), L"", WS_POPUP, 0, 0, 0, 0, nullptr, nullptr, m_hinstance, this);
     if (!m_window) return;
 
     RegisterHotKey(m_window, 1, m_settings->GetSettings().editorHotkey.get_modifiers(), m_settings->GetSettings().editorHotkey.get_code());
@@ -169,7 +171,7 @@ IFACEMETHODIMP_(void) FancyZones::Run() noexcept
         SetThreadDpiHostingBehavior(DPI_HOSTING_BEHAVIOR_MIXED);
     }}).wait();
 
-    if (RegOpenKeyEx(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VirtualDesktops", 0, KEY_ALL_ACCESS, &m_virtualDesktopsRegKey) == ERROR_SUCCESS) {
+    if (RegOpenKeyEx(HKEY_CURRENT_USER, GET_RESOURCE_STRING(IDS_VIRTUAL_DESKTOP_PATH).c_str(), 0, KEY_ALL_ACCESS, &m_virtualDesktopsRegKey) == ERROR_SUCCESS) {
         m_terminateVirtualDesktopTrackerEvent.reset(CreateEvent(nullptr, FALSE, FALSE, nullptr));
         m_virtualDesktopTrackerThread.submit(
             OnThreadExecutor::task_t{ std::bind(&FancyZones::HandleVirtualDesktopUpdates, this, m_terminateVirtualDesktopTrackerEvent.get()) });
@@ -380,7 +382,7 @@ void FancyZones::ToggleEditor() noexcept
 
     SHELLEXECUTEINFO sei{ sizeof(sei) };
     sei.fMask = { SEE_MASK_NOCLOSEPROCESS | SEE_MASK_FLAG_NO_UI };
-    sei.lpFile = L"modules\\FancyZonesEditor.exe";
+    sei.lpFile = GET_RESOURCE_STRING(IDS_FANCYZONES_EDITOR_EXE_PATH).c_str();
     sei.lpParameters = params.c_str();
     sei.nShow = SW_SHOWNORMAL;
     ShellExecuteEx(&sei);
@@ -615,8 +617,8 @@ void FancyZones::UpdateZoneWindows() noexcept
                 if (!deviceId)
                 {
                     deviceId = GetSystemMetrics(SM_REMOTESESSION) ?
-                        L"\\\\?\\DISPLAY#REMOTEDISPLAY#" :
-                        L"\\\\?\\DISPLAY#LOCALDISPLAY#";
+                        GET_RESOURCE_STRING(IDS_REMOTE_DISPLAY_PATH).c_str() :
+                        GET_RESOURCE_STRING(IDS_LOCAL_DISPLAY_PATH).c_str();
                 }
 
                 auto strongThis = reinterpret_cast<FancyZones*>(data);
@@ -830,7 +832,7 @@ void FancyZones::HandleVirtualDesktopUpdates(HANDLE fancyZonesDestroyedEvent) no
             return;
         }
         DWORD bufferCapacity;
-        const WCHAR* key = L"VirtualDesktopIDs";
+        const WCHAR* key = GET_RESOURCE_STRING(IDS_VIRTUAL_DESKTOP_ID).c_str();
         // request regkey binary buffer capacity only
         if (RegQueryValueExW(m_virtualDesktopsRegKey, key, 0, nullptr, nullptr, &bufferCapacity) != ERROR_SUCCESS) {
             return;
