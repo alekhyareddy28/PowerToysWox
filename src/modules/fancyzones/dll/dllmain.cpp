@@ -10,6 +10,7 @@
 #include <lib/trace.h>
 #include <lib/Settings.h>
 #include <lib/FancyZones.h>
+#include <lib/resource.h>
 
 extern "C" IMAGE_DOS_HEADER __ImageBase;
 
@@ -94,7 +95,7 @@ STDAPI PersistZoneSet(
         wil::unique_cotaskmem_string zoneSetId;
         if (SUCCEEDED_LOG(StringFromCLSID(id, &zoneSetId)))
         {
-            RegistryHelpers::SetString(activeKey, L"ActiveZoneSetId", zoneSetId.get());
+            RegistryHelpers::SetString(activeKey, GET_RESOURCE_STRING(IDS_ACTIVEZONE_SETID).c_str(), zoneSetId.get());
         }
 
         return S_OK;
@@ -108,7 +109,7 @@ public:
     // Return the display name of the powertoy, this will be cached
     virtual PCWSTR get_name() override
     {
-        return L"FancyZones";
+        return GET_RESOURCE_STRING(IDS_DISPLAY_NAME).c_str();
     }
 
     // Return array of the names of all events that this powertoy listens for, with
