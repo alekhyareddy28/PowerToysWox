@@ -1,8 +1,11 @@
 #include "pch.h"
+#include <common/common.h>
 #include <common/settings_objects.h>
 #include "lib/Settings.h"
 #include "lib/FancyZones.h"
 #include "trace.h"
+
+extern "C" IMAGE_DOS_HEADER __ImageBase;
 
 struct FancyZonesSettings : winrt::implements<FancyZonesSettings, IFancyZonesSettings>
 {
@@ -36,20 +39,20 @@ private:
         bool* value;
         int resourceId;
     } m_configBools[8] = {
-        { L"fancyzones_shiftDrag", &m_settings.shiftDrag, IDS_SETTING_DESCRIPTION_SHIFTDRAG },
-        { L"fancyzones_overrideSnapHotkeys", &m_settings.overrideSnapHotkeys, IDS_SETTING_DESCRIPTION_OVERRIDE_SNAP_HOTKEYS },
-        { L"fancyzones_zoneSetChange_flashZones", &m_settings.zoneSetChange_flashZones, IDS_SETTING_DESCRIPTION_ZONESETCHANGE_FLASHZONES },
-        { L"fancyzones_displayChange_moveWindows", &m_settings.displayChange_moveWindows, IDS_SETTING_DESCRIPTION_DISPLAYCHANGE_MOVEWINDOWS },
-        { L"fancyzones_zoneSetChange_moveWindows", &m_settings.zoneSetChange_moveWindows, IDS_SETTING_DESCRIPTION_ZONESETCHANGE_MOVEWINDOWS },
-        { L"fancyzones_virtualDesktopChange_moveWindows", &m_settings.virtualDesktopChange_moveWindows, IDS_SETTING_DESCRIPTION_VIRTUALDESKTOPCHANGE_MOVEWINDOWS },
-        { L"fancyzones_appLastZone_moveWindows", &m_settings.appLastZone_moveWindows, IDS_SETTING_DESCRIPTION_APPLASTZONE_MOVEWINDOWS },
-        { L"use_cursorpos_editor_startupscreen", &m_settings.use_cursorpos_editor_startupscreen, IDS_SETTING_DESCRIPTION_USE_CURSORPOS_EDITOR_STARTUPSCREEN },
+        { GET_RESOURCE_STRING(IDS_SHIFTDRAG).c_str(), &m_settings.shiftDrag, IDS_SETTING_DESCRIPTION_SHIFTDRAG },
+        { GET_RESOURCE_STRING(IDS_OVERRIDE_HOTKEYS).c_str(), &m_settings.overrideSnapHotkeys, IDS_SETTING_DESCRIPTION_OVERRIDE_SNAP_HOTKEYS },
+        { GET_RESOURCE_STRING(IDS_ZONESET_CHANGE_FLASHZONES).c_str(), &m_settings.zoneSetChange_flashZones, IDS_SETTING_DESCRIPTION_ZONESETCHANGE_FLASHZONES },
+        { GET_RESOURCE_STRING(IDS_DISPLAY_CHANGE_MOVEWINDOWS).c_str(), &m_settings.displayChange_moveWindows, IDS_SETTING_DESCRIPTION_DISPLAYCHANGE_MOVEWINDOWS },
+        { GET_RESOURCE_STRING(IDS_ZONESET_CHANGE_MOVEWINDOWS).c_str(), &m_settings.zoneSetChange_moveWindows, IDS_SETTING_DESCRIPTION_ZONESETCHANGE_MOVEWINDOWS },
+        { GET_RESOURCE_STRING(IDS_VIRTUALDESKTOP_MOVEWINDOWS).c_str(), &m_settings.virtualDesktopChange_moveWindows, IDS_SETTING_DESCRIPTION_VIRTUALDESKTOPCHANGE_MOVEWINDOWS },
+        { GET_RESOURCE_STRING(IDS_APP_LASTZONE_MOVEWINDOWS).c_str(), &m_settings.appLastZone_moveWindows, IDS_SETTING_DESCRIPTION_APPLASTZONE_MOVEWINDOWS },
+        { GET_RESOURCE_STRING(IDS_EDITOR_STARTUP_SCREEN).c_str(), &m_settings.use_cursorpos_editor_startupscreen, IDS_SETTING_DESCRIPTION_USE_CURSORPOS_EDITOR_STARTUPSCREEN },
     };
 
-    const std::wstring m_zoneHiglightName = L"fancyzones_zoneHighlightColor";
-    const std::wstring m_editorHotkeyName = L"fancyzones_editor_hotkey";
-    const std::wstring m_excludedAppsName = L"fancyzones_excluded_apps";
-    const std::wstring m_zoneHighlightOpacity = L"fancyzones_highlight_opacity";
+    const std::wstring m_zoneHiglightName = GET_RESOURCE_STRING(IDS_ZONE_HIGHLIGHT_COLOR).c_str();
+    const std::wstring m_editorHotkeyName = GET_RESOURCE_STRING(IDS_EDITOR_HOTKEY).c_str();
+    const std::wstring m_excludedAppsName = GET_RESOURCE_STRING(IDS_EXCLUDED_APPS).c_str();
+    const std::wstring m_zoneHighlightOpacity = GET_RESOURCE_STRING(IDS_HIGHLIGHT_OPACITY).c_str();
 };
 
 IFACEMETHODIMP_(bool) FancyZonesSettings::GetConfig(_Out_ PWSTR buffer, _Out_ int *buffer_size) noexcept
@@ -58,14 +61,14 @@ IFACEMETHODIMP_(bool) FancyZonesSettings::GetConfig(_Out_ PWSTR buffer, _Out_ in
 
     // Pass a string literal or a resource id to Settings::set_description().
     settings.set_description(IDS_SETTING_DESCRIPTION);
-    settings.set_icon_key(L"pt-fancy-zones");
-    settings.set_overview_link(L"https://github.com/microsoft/PowerToys/blob/master/src/modules/fancyzones/README.md");
-    settings.set_video_link(L"https://youtu.be/rTtGzZYAXgY");
+    settings.set_icon_key(GET_RESOURCE_STRING(IDS_SET_ICON_KEY).c_str());
+    settings.set_overview_link(GET_RESOURCE_STRING(IDS_OVERVIEW_LINK).c_str());
+    settings.set_video_link(GET_RESOURCE_STRING(IDS_VIDEO_LINK).c_str());
 
     // Add a custom action property. When using this settings type, the "PowertoyModuleIface::call_custom_action()"
     // method should be overriden as well.
     settings.add_custom_action(
-        L"ToggledFZEditor", // action name.
+        GET_RESOURCE_STRING(IDS_TOGGLE_EDITOR).c_str(), // action name.
         IDS_SETTING_LAUNCH_EDITOR_LABEL,
         IDS_SETTING_LAUNCH_EDITOR_BUTTON,
         IDS_SETTING_LAUNCH_EDITOR_DESCRIPTION
@@ -102,7 +105,7 @@ IFACEMETHODIMP_(void) FancyZonesSettings::CallCustomAction(PCWSTR action) noexce
     PowerToysSettings::CustomActionObject action_object =
         PowerToysSettings::CustomActionObject::from_json_string(action);
 
-    if (m_callback && action_object.get_name() == L"ToggledFZEditor")
+    if (m_callback && action_object.get_name() == GET_RESOURCE_STRING(IDS_TOGGLE_EDITOR).c_str())
     {
         m_callback->ToggleEditor();
     }
