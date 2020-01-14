@@ -95,7 +95,7 @@ STDAPI PersistZoneSet(
         wil::unique_cotaskmem_string zoneSetId;
         if (SUCCEEDED_LOG(StringFromCLSID(id, &zoneSetId)))
         {
-            RegistryHelpers::SetString(activeKey, GET_RESOURCE_STRING(IDS_ACTIVEZONE_SETID).c_str(), zoneSetId.get());
+            RegistryHelpers::SetString(activeKey, GET_RES_STRING(IDS_ACTIVEZONE_SETID), zoneSetId.get());
         }
 
         return S_OK;
@@ -120,16 +120,14 @@ std::wstring get_resource(UINT resource_id)
 }
 
 
-
 class FancyZonesModule : public PowertoyModuleIface
 {
 public:
     // Return the display name of the powertoy, this will be cached
     virtual PCWSTR get_name() override
     {
-        
-        //return GET_RES_STRING(IDS_DISPLAY_NAME);
-        return L"fancyzonesss";
+        return GET_RES_STRING(IDS_DISPLAY_NAME);
+        //return L"Fancyzones";
     }
 
     // Return array of the names of all events that this powertoy listens for, with
@@ -218,10 +216,8 @@ public:
 
     FancyZonesModule()
     {
-        wchar_t* tmp_res_string_ptr = (wchar_t*)FancyZonesModule::get_name();
-        wprintf(L"fancyzones : %ls", tmp_res_string_ptr);
-        m_settings = MakeFancyZonesSettings(reinterpret_cast<HINSTANCE>(&__ImageBase), tmp_res_string_ptr);
-        free(tmp_res_string_ptr);
+        app_name = (wchar_t*)FancyZonesModule::get_name();
+        m_settings = MakeFancyZonesSettings(reinterpret_cast<HINSTANCE>(&__ImageBase), app_name);
     }
 
 private:
@@ -282,6 +278,7 @@ private:
     HANDLE m_movedWindow = nullptr;
     winrt::com_ptr<IFancyZones> m_app;
     winrt::com_ptr<IFancyZonesSettings> m_settings;
+    wchar_t* app_name;
 };
 
 intptr_t FancyZonesModule::HandleKeyboardHookEvent(LowlevelKeyboardEvent* data) noexcept

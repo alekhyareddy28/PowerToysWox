@@ -82,11 +82,11 @@ std::wstring get_resource_string(UINT resource_id, HINSTANCE instance, const wch
 // Function which takes a pointer ptr and allocates space before populating it with the string from the resource table
 // using this approach as wstring cannot be cast to PCWSTR without allocating space
 // hence, we have to malloc and free the pointer after each use
-void get_resource_string_wchar(UINT resource_id, HINSTANCE instance, wchar_t** tmp_res_ptr);
+wchar_t* get_resource_string_wchar(UINT resource_id, HINSTANCE instance);
 
 // Wrapper for getting a string from the resource file.
 // Requires that
 //  extern "C" IMAGE_DOS_HEADER __ImageBase;
 // is added to the .cpp file.
 // used when the return type must be a wchar_t* instead of a wstring.
-#define GET_RES_STRING(resource_id, tmp_res_ptr) get_resource_string_wchar(resource_id, reinterpret_cast<HINSTANCE>(&__ImageBase), tmp_res_ptr)
+#define GET_RES_STRING(resource_id) get_resource_string_wchar(resource_id, reinterpret_cast<HINSTANCE>(&__ImageBase))

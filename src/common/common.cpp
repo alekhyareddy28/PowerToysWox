@@ -471,19 +471,23 @@ std::wstring get_resource_string(UINT resource_id, HINSTANCE instance, const wch
 }
 
 // function to return the string as a to a wchar_t* (to enable localization in cases where the return type did not accept wstring)
-void get_resource_string_wchar(UINT resource_id, HINSTANCE instance, wchar_t** tmp_res_ptr)
+wchar_t* get_resource_string_wchar(UINT resource_id, HINSTANCE instance)
 {
     wchar_t* text_ptr;
     unsigned int length = LoadStringW(instance, resource_id, reinterpret_cast<wchar_t*>(&text_ptr), 0);
     std::wstring res_string = { *reinterpret_cast<wchar_t**>(&text_ptr), length };
     length++;
+    
 
     if (length > 1)
     {
-        *tmp_res_ptr = (wchar_t*)malloc((length) * sizeof(wchar_t));
-        wmemcpy(*tmp_res_ptr, res_string.c_str(), length);
-        wprintf(L"fancyzones : %ls", *tmp_res_ptr);
+        wchar_t* tmp_res_ptr;
+        tmp_res_ptr = new wchar_t[length];
+        wmemcpy(tmp_res_ptr, res_string.c_str(), length);
+        return tmp_res_ptr;
     }
+
+    return (wchar_t*)L"test";
 }
 
 std::wstring get_module_filename(HMODULE mod)
