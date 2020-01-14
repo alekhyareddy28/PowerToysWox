@@ -15,9 +15,9 @@ OverlayWindow::OverlayWindow()
     init_settings();
 }
 
-const wchar_t* OverlayWindow::get_name()
+void OverlayWindow::get_name(wchar_t** tmp_res_str)
 {
-    return L"Shortcut Guide";
+    //return L"Shortcut Guide";
 }
 
 const wchar_t** OverlayWindow::get_events()

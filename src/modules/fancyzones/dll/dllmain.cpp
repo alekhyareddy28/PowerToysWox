@@ -14,21 +14,21 @@
 
 extern "C" IMAGE_DOS_HEADER __ImageBase;
 
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
     switch (ul_reason_for_call)
     {
-        case DLL_PROCESS_ATTACH:
-            Trace::RegisterProvider();
-            break;
+    case DLL_PROCESS_ATTACH:
+        Trace::RegisterProvider();
+        break;
 
-        case DLL_THREAD_ATTACH:
-        case DLL_THREAD_DETACH:
-            break;
+    case DLL_THREAD_ATTACH:
+    case DLL_THREAD_DETACH:
+        break;
 
-        case DLL_PROCESS_DETACH:
-            Trace::UnregisterProvider();
-            break;
+    case DLL_PROCESS_DETACH:
+        Trace::UnregisterProvider();
+        break;
     }
     return TRUE;
 }
@@ -43,7 +43,7 @@ STDAPI PersistZoneSet(
     int zones[]) // Array of zones serialized in left/top/right/bottom chunks
 {
     // See if we have already persisted this layout we can update.
-    UUID id{GUID_NULL};
+    UUID id{ GUID_NULL };
     if (wil::unique_hkey key{ RegistryHelpers::OpenKey(resolutionKey) })
     {
         ZoneSetPersistedData data{};
@@ -85,9 +85,9 @@ STDAPI PersistZoneSet(
         {
             const int baseIndex = i * 4;
             const int left = zones[baseIndex];
-            const int top = zones[baseIndex+1];
-            const int right = zones[baseIndex+2];
-            const int bottom = zones[baseIndex+3];
+            const int top = zones[baseIndex + 1];
+            const int right = zones[baseIndex + 2];
+            const int bottom = zones[baseIndex + 3];
             zoneSet->AddZone(MakeZone({ left, top, right, bottom }));
         }
         zoneSet->Save();
@@ -103,13 +103,33 @@ STDAPI PersistZoneSet(
     return E_FAIL;
 }
 
+// Resource helper.
+std::wstring get_resource(UINT resource_id)
+{
+    if (resource_id != 0)
+    {
+        wchar_t* res_ptr;
+        const size_t resource_length = LoadStringW(reinterpret_cast<HINSTANCE>(&__ImageBase), resource_id, reinterpret_cast<wchar_t*>(&res_ptr), 0);
+        if (resource_length != 0)
+        {
+            return { *reinterpret_cast<wchar_t**>(&res_ptr), resource_length };
+        }
+    }
+
+    return L"RESOURCE ID NOT FOUND: " + std::to_wstring(resource_id);
+}
+
+
+
 class FancyZonesModule : public PowertoyModuleIface
 {
 public:
     // Return the display name of the powertoy, this will be cached
     virtual PCWSTR get_name() override
     {
-        return GET_RESOURCE_STRING(IDS_DISPLAY_NAME).c_str();
+        
+        //return GET_RES_STRING(IDS_DISPLAY_NAME);
+        return L"fancyzonesss";
     }
 
     // Return array of the names of all events that this powertoy listens for, with
@@ -122,7 +142,7 @@ public:
 
     // Return JSON with the configuration options.
     // These are the settings shown on the settings page along with their current values.
-    virtual bool get_config(_Out_ PWSTR buffer, _Out_ int *buffer_size) override
+    virtual bool get_config(_Out_ PWSTR buffer, _Out_ int* buffer_size) override
     {
         return m_settings->GetConfig(buffer, buffer_size);
     }
@@ -186,8 +206,8 @@ public:
         return 0;
     }
 
-    virtual void register_system_menu_helper(PowertoySystemMenuIface* helper) override { }
-    virtual void signal_system_menu_action(const wchar_t* name) override { }
+    virtual void register_system_menu_helper(PowertoySystemMenuIface* helper) override {}
+    virtual void signal_system_menu_action(const wchar_t* name) override {}
 
     // Destroy the powertoy and free memory
     virtual void destroy() override
@@ -198,7 +218,10 @@ public:
 
     FancyZonesModule()
     {
-        m_settings = MakeFancyZonesSettings(reinterpret_cast<HINSTANCE>(&__ImageBase), FancyZonesModule::get_name());
+        wchar_t* tmp_res_string_ptr = (wchar_t*)FancyZonesModule::get_name();
+        wprintf(L"fancyzones : %ls", tmp_res_string_ptr);
+        m_settings = MakeFancyZonesSettings(reinterpret_cast<HINSTANCE>(&__ImageBase), tmp_res_string_ptr);
+        free(tmp_res_string_ptr);
     }
 
 private:
@@ -239,8 +262,9 @@ private:
 
     void Disable(bool const traceEvent)
     {
-        if (m_app) {
-            if (traceEvent) 
+        if (m_app)
+        {
+            if (traceEvent)
             {
                 Trace::FancyZones::EnableFancyZones(false);
             }
@@ -276,20 +300,17 @@ void FancyZonesModule::HandleWinHookEvent(WinHookEvent* data) noexcept
 
     switch (data->event)
     {
-    case EVENT_SYSTEM_MOVESIZESTART:
-    {
+    case EVENT_SYSTEM_MOVESIZESTART: {
         MoveSizeStart(data->hwnd, ptScreen);
     }
     break;
 
-    case EVENT_SYSTEM_MOVESIZEEND:
-    {
+    case EVENT_SYSTEM_MOVESIZEEND: {
         MoveSizeEnd(data->hwnd, ptScreen);
     }
     break;
 
-    case EVENT_OBJECT_LOCATIONCHANGE:
-    {
+    case EVENT_OBJECT_LOCATIONCHANGE: {
         if (m_app.as<IFancyZonesCallback>()->InMoveSize())
         {
             MoveSizeUpdate(ptScreen);
@@ -297,8 +318,7 @@ void FancyZonesModule::HandleWinHookEvent(WinHookEvent* data) noexcept
     }
     break;
 
-    case EVENT_OBJECT_NAMECHANGE:
-    {
+    case EVENT_OBJECT_NAMECHANGE: {
         // The accessibility name of the desktop window changes whenever the user
         // switches virtual desktops.
         if (data->hwnd == GetDesktopWindow())
@@ -311,8 +331,7 @@ void FancyZonesModule::HandleWinHookEvent(WinHookEvent* data) noexcept
 
     case EVENT_OBJECT_UNCLOAKED:
     case EVENT_OBJECT_SHOW:
-    case EVENT_OBJECT_CREATE:
-    {
+    case EVENT_OBJECT_CREATE: {
         if (data->idObject == OBJID_WINDOW)
         {
             if (IsInterestingWindow(data->hwnd))
@@ -357,9 +376,7 @@ void FancyZonesModule::MoveSizeUpdate(POINT const& ptScreen) noexcept
     }
 }
 
-extern "C" __declspec(dllexport) PowertoyModuleIface*  __cdecl powertoy_create()
+extern "C" __declspec(dllexport) PowertoyModuleIface* __cdecl powertoy_create()
 {
-  return new FancyZonesModule();
+    return new FancyZonesModule();
 }
-
-

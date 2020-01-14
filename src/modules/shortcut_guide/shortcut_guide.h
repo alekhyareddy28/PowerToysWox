@@ -14,7 +14,7 @@ class OverlayWindow : public PowertoyModuleIface
 {
 public:
     OverlayWindow();
-    virtual const wchar_t* get_name() override;
+    virtual void get_name(wchar_t** tmp_res_str) override;
     virtual const wchar_t** get_events() override;
     virtual bool get_config(wchar_t* buffer, int* buffer_size) override;
 

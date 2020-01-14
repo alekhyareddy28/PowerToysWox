@@ -34,6 +34,7 @@ class PowertoyModuleIface {
 public:
   /* Returns the name of the PowerToy, this will be cached by the runner. */
   virtual const wchar_t* get_name() = 0;
+  //virtual void get_name_fc(wchar_t** tmp_res_ptr) = 0;
   /* Returns a null-terminated table of the names of the events the PowerToy wants to 
      subscribe to. Available events:
        * ll_keyboard
