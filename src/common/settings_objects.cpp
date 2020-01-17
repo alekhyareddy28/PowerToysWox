@@ -296,14 +296,4 @@ namespace PowerToysSettings {
   void PowerToyValues::set_version() {
     m_json.SetNamedValue(L"version", json::value(m_version));
   }
-
-  void Settings::add_header_szLarge(std::wstring_view name, std::wstring_view description, std::wstring_view value){
-      json::JsonObject string;
-      string.SetNamedValue(L"display_name", json::value(description));
-      string.SetNamedValue(L"editor_type", json::value(L"header_large"));
-      string.SetNamedValue(L"value", json::value(value));
-      string.SetNamedValue(L"order", json::value(++m_curr_priority));
-
-      m_json.GetNamedObject(L"properties").SetNamedValue(name, string);
-  }
 }
