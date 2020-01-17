@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation
+// Copyright (c) Microsoft Corporation
 // The Microsoft Corporation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,7 +11,7 @@ namespace Common.ComInterlop
     /// The COLORREF value is used to specify an RGB color.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct COLORREF
+    public struct COLORREF
     {
         /// <summary>
         /// Stores an RGB color value in a 32 bit integer.
