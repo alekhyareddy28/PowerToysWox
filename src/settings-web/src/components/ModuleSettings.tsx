@@ -98,6 +98,12 @@ export class ModuleSettings extends React.Component <any, any> {
         </Stack>
         {
           Object.keys(power_toys_properties).
+          sort(function(a, b) {
+            return ( // Order powertoys settings
+              (power_toys_properties[a].order || 0) -
+              (power_toys_properties[b].order || 0)
+            )
+          }).
           map((key) => {
             switch(power_toys_properties[key].editor_type) {
               case 'bool_toggle':
@@ -157,8 +163,6 @@ export class ModuleSettings extends React.Component <any, any> {
                   on_change={this.parent_on_change}
                   ref={(input) => {this.references[key]=input;}}
                 />;
-                case 'header_large':
-            return <Text variant='large' className="SubHeader">{power_toys_properties[key].display_name}</Text>;              
               default:
                 return null;
             }

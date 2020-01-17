@@ -3,7 +3,7 @@
 #include <interface/lowlevel_keyboard_event_data.h>
 #include <interface/win_hook_event_data.h>
 #include "trace.h"
-#include <./settings_objects.h>
+#include <../common/settings_objects.h>
 
 extern "C" IMAGE_DOS_HEADER __ImageBase;
 
