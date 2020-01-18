@@ -203,7 +203,7 @@ public:
     // Handle incoming event, data is event-specific
     virtual intptr_t signal_event(const wchar_t* name, intptr_t data) override
     {
-        return 1;
+        return 0;
     }
 
     virtual void register_system_menu_helper(PowertoySystemMenuIface* helper) override {}
