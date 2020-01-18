@@ -414,6 +414,23 @@ namespace UnitTestsCommonLib
             compareJsons(expected, actual);
         }
 
+        TEST_METHOD(SettingsAddLargeHeader)
+        {
+            const auto value = L"large header sample text ";
+
+            Settings settings(nullptr, m_moduleName);
+            settings.add_header_szLarge(m_defaultSettingsName, m_defaultSettingsDescription, value);
+
+            auto expected = m_defaultSettingsJson;
+            auto expectedProperties = createSettingsProperties(L"header_large");
+            expectedProperties.SetNamedValue(L"value", json::JsonValue::CreateStringValue(value));
+            expected.GetNamedObject(L"properties").SetNamedValue(m_defaultSettingsName, expectedProperties);
+
+            const auto actual = json::JsonObject::Parse(settings.serialize());
+
+            compareJsons(expected, actual);
+        }
+
         TEST_METHOD(SettingsAddString)
         {
             const auto value = L"string text ";
