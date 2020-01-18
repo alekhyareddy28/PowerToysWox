@@ -69,6 +69,36 @@ void Trace::ExplorerSVGRenderDisabled()
         TraceLoggingKeyword(PROJECT_KEYWORD_MEASURE));
 }
 
+void Trace::ExplorerSVGSettingsUpDateFailed()
+{
+    TraceLoggingWrite(
+        g_hProvider,
+        "PowerPreview_ExplorerSVGFilePreview_FailedUpdatingSettings",
+        ProjectTelemetryPrivacyDataTag(ProjectTelemetryTag_ProductAndServicePerformance),
+        TraceLoggingBoolean(TRUE, "UTCReplace_AppSessionGuid"),
+        TraceLoggingKeyword(PROJECT_KEYWORD_MEASURE));
+}
+
+void Trace::PreviewPaneSVGSettingsUpdateFailed()
+{
+    TraceLoggingWrite(
+        g_hProvider,
+        "PowerPreview_PreviewPaneSVGFilePreview_FailedUpdatingSettings",
+        ProjectTelemetryPrivacyDataTag(ProjectTelemetryTag_ProductAndServicePerformance),
+        TraceLoggingBoolean(TRUE, "UTCReplace_AppSessionGuid"),
+        TraceLoggingKeyword(PROJECT_KEYWORD_MEASURE));
+}
+
+void Trace::PreviewPaneMarkDownSettingsUpdateFailed()
+{
+    TraceLoggingWrite(
+        g_hProvider,
+        "PowerPreview_PreviewPaneMDPrevw_FailedUpdatingSettings",
+        ProjectTelemetryPrivacyDataTag(ProjectTelemetryTag_ProductAndServicePerformance),
+        TraceLoggingBoolean(TRUE, "UTCReplace_AppSessionGuid"),
+        TraceLoggingKeyword(PROJECT_KEYWORD_MEASURE));
+}
+
 void Trace::PreviewPaneSVGRenderEnabled()
 {
     TraceLoggingWrite(

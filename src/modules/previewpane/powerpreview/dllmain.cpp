@@ -113,44 +113,63 @@ public:
     {
         try
         {
-            // Parse the input JSON string.
-            PowerToysSettings::PowerToyValues values =
-                PowerToysSettings::PowerToyValues::from_json_string(config);
+            PowerToysSettings::PowerToyValues values = PowerToysSettings::PowerToyValues::from_json_string(config);
 
             // Update settings for SVG icon render in Windows File Explorer. 
             auto explr_rendrsvg_bool_toggle = values.get_bool_value(PowerPreviewSettings.EXPLR_RENDRSVG_BOOL_TOGGLE);
-            PowerPreviewSettings.svgPreview_in_explr_IsEnabled = explr_rendrsvg_bool_toggle.value();
-            if (PowerPreviewSettings.svgPreview_in_explr_IsEnabled)
+            if(explr_rendrsvg_bool_toggle != std::nullopt)
             {
-                Trace::ExplorerSVGRenderEnabled();
+                PowerPreviewSettings.svgPreview_in_explr_IsEnabled = explr_rendrsvg_bool_toggle.value();
+                if (PowerPreviewSettings.svgPreview_in_explr_IsEnabled)
+                {
+                    Trace::ExplorerSVGRenderEnabled();
+                }
+                else
+                {
+                    Trace::ExplorerSVGRenderDisabled();
+                }
             }
             else
             {
-                Trace::ExplorerSVGRenderDisabled();
+                Trace::ExplorerSVGSettingsUpDateFailed();
             }
 
             // Update settings for SVG file render in Preview Pane.
             auto prevpane_rendrsvg_bool_toggle = values.get_bool_value(PowerPreviewSettings.PREVPANE_RENDRSVG_BOOL_TOGGLE);
-            PowerPreviewSettings.svgPreview_in_prevpane_IsEnabled = prevpane_rendrsvg_bool_toggle.value();
-            if (PowerPreviewSettings.svgPreview_in_prevpane_IsEnabled)
+            if(prevpane_rendrsvg_bool_toggle != std::nullopt)
             {
-                Trace::PreviewPaneMarkDownRenderEnabled();
+                PowerPreviewSettings.svgPreview_in_prevpane_IsEnabled = prevpane_rendrsvg_bool_toggle.value();
+                if (PowerPreviewSettings.svgPreview_in_prevpane_IsEnabled)
+                {
+                    Trace::PreviewPaneSVGRenderEnabled();
+                }
+                else
+                {
+                    Trace::PreviewPaneSVGRenderDisabled();
+                }
             }
             else
             {
-                Trace::PreviewPaneMarkDownRenderDisabled();
+                Trace::PreviewPaneSVGSettingsUpdateFailed();
             }
 
             // Update settings for Mark Down render in preview pane.
             auto prevpane_rendrmd_bool_toggle = values.get_bool_value(PowerPreviewSettings.PREVPANE_RENDMD_BOOL_TOGGLE);
-            PowerPreviewSettings.mdPreview_in_prevpane_IsEnabled = prevpane_rendrmd_bool_toggle.value();
-            if (PowerPreviewSettings.mdPreview_in_prevpane_IsEnabled)
+            if(prevpane_rendrmd_bool_toggle != std::nullopt)
             {
-                Trace::PreviewPaneMarkDownRenderEnabled();
+                PowerPreviewSettings.mdPreview_in_prevpane_IsEnabled = prevpane_rendrmd_bool_toggle.value();
+                if (PowerPreviewSettings.mdPreview_in_prevpane_IsEnabled)
+                {
+                    Trace::PreviewPaneMarkDownRenderEnabled();
+                }
+                else
+                {
+                    Trace::PreviewPaneMarkDownRenderDisabled();
+                }
             }
             else
             {
-                Trace::PreviewPaneMarkDownRenderDisabled();
+                Trace::PreviewPaneMarkDownSettingsUpdateFailed();
             }
 
             values.save_to_settings_file();

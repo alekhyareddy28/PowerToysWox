@@ -15,5 +15,8 @@ public:
     static void PreviewPaneMarkDownRenderEnabled();
     static void SetConfigInvalidJSON(const char* _exceptionMessage);
     static void InitSetErrorLoadingFile(const char* _exceptionMessage);
+    static void ExplorerSVGSettingsUpDateFailed();
+    static void PreviewPaneMarkDownSettingsUpdateFailed();
+    static void PreviewPaneSVGSettingsUpdateFailed();
     static void Destroyed();
 };
