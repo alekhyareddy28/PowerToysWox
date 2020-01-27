@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
+using System.Resources;
 using System.Windows;
 using FancyZonesEditor.Models;
 using Microsoft.Win32;
@@ -32,6 +33,8 @@ namespace FancyZonesEditor
         private static readonly ushort _priorityGridModelId = 0xFFFB;
         private static readonly ushort _blankCustomModelId = 0xFFFA;
         private static readonly ushort _lastPrefinedId = _blankCustomModelId;
+
+        private ResourceManager rm = new ResourceManager(typeof(FancyZonesEditor.Properties.Resources));
 
         // hard coded data for all the "Priority Grid" configurations that are unique to "Grid"
         private static readonly byte[][] _priorityData = new byte[][]
@@ -73,7 +76,7 @@ namespace FancyZonesEditor
 
             // Initialize the five default layout models: Focus, Columns, Rows, Grid, and PriorityGrid
             DefaultModels = new List<LayoutModel>(5);
-            _focusModel = new CanvasLayoutModel("Focus", _focusModelId, (int)_workArea.Width, (int)_workArea.Height);
+            _focusModel = new CanvasLayoutModel(rm.GetString("Focus"), _focusModelId, (int)_workArea.Width, (int)_workArea.Height);
             DefaultModels.Add(_focusModel);
 
             _columnsModel = new GridLayoutModel("Columns", _columnsModelId)

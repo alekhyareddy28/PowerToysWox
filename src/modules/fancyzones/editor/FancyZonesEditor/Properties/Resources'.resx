@@ -141,9 +141,6 @@
   <data name="Edit_Selected_Layout" xml:space="preserve">
     <value>Edit selected layout</value>
   </data>
-  <data name="Focus" xml:space="preserve">
-    <value>Focus</value>
-  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -161,8 +158,5 @@
   </data>
   <data name="Templates" xml:space="preserve">
     <value>Templates</value>
-  </data>
-  <data name="Zones" xml:space="preserve">
-    <value>Zones</value>
   </data>
 </root>

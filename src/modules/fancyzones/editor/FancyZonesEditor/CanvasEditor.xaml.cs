@@ -2,6 +2,7 @@
 // The Microsoft Corporation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using FancyZonesEditor.Models;
@@ -14,6 +15,7 @@ namespace FancyZonesEditor
     public partial class CanvasEditor : UserControl
     {
         private CanvasLayoutModel _model;
+        private ResourceManager rm = new ResourceManager(typeof(FancyZonesEditor.Properties.Resources));
 
         public CanvasEditor()
         {
@@ -35,7 +37,8 @@ namespace FancyZonesEditor
 
         private void OnModelChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Zones")
+            string zones = rm.GetString("Zones");
+            if (e.PropertyName == zones)
             {
                 UpdateZoneRects();
             }

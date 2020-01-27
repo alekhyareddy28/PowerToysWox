@@ -22,14 +22,14 @@ namespace FancyZonesEditor.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class Resources_ {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources_() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FancyZonesEditor.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FancyZonesEditor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FancyZonesEditor.Properties.Resources\'", typeof(Resources_).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -133,15 +133,6 @@ namespace FancyZonesEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Focus.
-        /// </summary>
-        public static string Focus {
-            get {
-                return ResourceManager.GetString("Focus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -192,15 +183,6 @@ namespace FancyZonesEditor.Properties {
         public static string Templates {
             get {
                 return ResourceManager.GetString("Templates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zones.
-        /// </summary>
-        public static string Zones {
-            get {
-                return ResourceManager.GetString("Zones", resourceCulture);
             }
         }
     }

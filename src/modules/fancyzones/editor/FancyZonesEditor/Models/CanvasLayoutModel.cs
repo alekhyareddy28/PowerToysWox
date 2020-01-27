@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+using System.Resources;
 using System.Windows;
 
 namespace FancyZonesEditor.Models
@@ -12,6 +13,7 @@ namespace FancyZonesEditor.Models
     public class CanvasLayoutModel : LayoutModel
     {
         private static readonly ushort _latestVersion = 0;
+        private ResourceManager rm = new ResourceManager(typeof(FancyZonesEditor.Properties.Resources));
 
         public CanvasLayoutModel(ushort version, string name, ushort id, byte[] data)
             : base(name, id)
@@ -93,7 +95,7 @@ namespace FancyZonesEditor.Models
         public void RemoveZoneAt(int index)
         {
             Zones.RemoveAt(index);
-            FirePropertyChanged("Zones");
+            FirePropertyChanged(rm.GetString("Zones"));
         }
 
         // AddZone
@@ -101,7 +103,7 @@ namespace FancyZonesEditor.Models
         public void AddZone(Int32Rect zone)
         {
             Zones.Add(zone);
-            FirePropertyChanged("Zones");
+            FirePropertyChanged(rm.GetString("Zones"));
         }
 
         private void Load(byte[] data)
