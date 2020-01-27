@@ -217,8 +217,8 @@
                     </ItemsControl>
 
                     <StackPanel Orientation="Horizontal" Margin="10,4,0,8">
-                        <CheckBox x:Name="spaceAroundSetting" Content="Show space around zones" Style="{StaticResource settingCheckBoxText}" IsChecked="{Binding ShowSpacing}"/>
-                        <TextBlock Text="Space around zones" Style="{StaticResource settingText}"/>
+                        <CheckBox x:Name="spaceAroundSetting" Content="{x:Static props:Resources.Show_Space_Zones}" Style="{StaticResource settingCheckBoxText}" IsChecked="{Binding ShowSpacing}"/>
+                        <TextBlock Text="{x:Static props:Resources.Space_Around_Zones}" Style="{StaticResource settingText}"/>
                         <TextBox x:Name="paddingValue" Text="{Binding Path=Spacing,Mode=TwoWay}" Style="{StaticResource textBox}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -226,8 +226,8 @@
 
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,12,0,16">
-                        <Button x:Name="EditTemplateButton" Padding="8" Content="Edit selected layout" Style="{StaticResource secondaryButton}" Click="EditLayout_Click"/>
-                        <Button x:Name="ApplyTemplateButton" Padding="8" Content="Apply" Style="{StaticResource primaryButton}" Click="Apply_Click"/>
+                        <Button x:Name="EditTemplateButton" Padding="8" Content="{x:Static props:Resources.Edit_Selected_Layout}" Style="{StaticResource secondaryButton}" Click="EditLayout_Click"/>
+                        <Button x:Name="ApplyTemplateButton" Padding="8" Content="{x:Static props:Resources.Apply}" Style="{StaticResource primaryButton}" Click="Apply_Click"/>
                     </StackPanel>
                 </StackPanel>
             </TabItem>
