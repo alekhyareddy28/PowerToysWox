@@ -57,9 +57,9 @@ int runner()
         // Load Powertyos DLLS
         // For now only load known DLLs
         std::unordered_set<std::wstring> known_dlls = {
-            /*L"shortcut_guide.dll",*/
-            /*L"fancyzones.dll",*/
-            /*L"PowerRenameExt.dll",*/
+            L"shortcut_guide.dll",
+            L"fancyzones.dll",
+            L"PowerRenameExt.dll",
             L"WoxLauncher.dll"
         };
         for (auto& file : std::filesystem::directory_iterator(L"modules/"))
