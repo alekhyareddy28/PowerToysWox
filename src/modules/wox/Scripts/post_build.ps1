@@ -124,24 +124,24 @@ function Main {
     # $v = Build-Version
     Copy-Resources $p $config
 
-    if ($config -eq "Release"){
+    # if ($config -eq "Release"){
 
-        Delete-Unused $p $config
-        #$o = "$p\Output\Packages"
-        $o = "$p\..\..\..\x64\Release\modules\Packages"
-        Validate-Directory $o
-        New-Alias Nuget $p\packages\NuGet.CommandLine.*\tools\NuGet.exe -Force
-        Pack-Squirrel-Installer $p $v $o
+    #     Delete-Unused $p $config
+    #     #$o = "$p\Output\Packages"
+    #     $o = "$p\..\..\..\x64\Release\modules\Packages"
+    #     Validate-Directory $o
+    #     New-Alias Nuget $p\packages\NuGet.CommandLine.*\tools\NuGet.exe -Force
+    #     Pack-Squirrel-Installer $p $v $o
     
-        $isInCI = $env:APPVEYOR
-        if ($isInCI) {
-            Pack-Nuget $p $v $o
-        #     Zip-Release $p $v $o
-        }
+    #     $isInCI = $env:APPVEYOR
+    #     if ($isInCI) {
+    #         Pack-Nuget $p $v $o
+    #     #     Zip-Release $p $v $o
+    #     }
 
-        Write-Host "List output directory"
-        Get-ChildItem $o
-    }
+    #     Write-Host "List output directory"
+    #     Get-ChildItem $o
+    # }
 }
 
 Main
