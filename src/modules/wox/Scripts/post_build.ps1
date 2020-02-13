@@ -16,17 +16,17 @@ function Build-Version {
 }
 
 function Build-Path {
-    # if (![string]::IsNullOrEmpty($env:APPVEYOR_BUILD_FOLDER)) {
-    #     $p = $env:APPVEYOR_BUILD_FOLDER
-    # } elseif (![string]::IsNullOrEmpty($solution)) {
-    #     $p = $solution
-    # } else {
-    #     $p = Get-Location
-    # }
+    if (![string]::IsNullOrEmpty($env:APPVEYOR_BUILD_FOLDER)) {
+        $p = $env:APPVEYOR_BUILD_FOLDER
+    } elseif (![string]::IsNullOrEmpty($solution)) {
+        $p = $solution
+    } else {
+        $p = Get-Location
+    }
 
-    $p = Get-Location
+    # $p = Get-Location
     #To set the location as the src\modules\wox folder
-    $p = "$p\..\"
+    # $p = "$p\..\"
     Write-Host "Build Folder: $p"
     Set-Location $p
 

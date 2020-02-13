@@ -21,6 +21,82 @@
         <File DestinationPath="svgs\*" SourcePath="..\..\x64\Release\svgs\*"/>
         <File DestinationPath="settings-html\**" SourcePath="..\..\x64\Release\settings-html\**"/>
         <File DestinationPath="Images\*.png" SourcePath="Images\*.png"/>
+
+        <File DestinationPath="modules\WoxLauncher.dll" SourcePath="..\..\x64\Release\modules\WoxLauncher.dll"/>
+        <File DestinationPath="modules\Wox\Wox.exe" SourcePath="..\..\x64\Release\modules\Wox\Wox.exe"/> 
+        <File DestinationPath="modules\Wox\*.dll" SourcePath="..\..\x64\Release\modules\Wox\*.dll"/> 
+
+        <File DestinationPath="modules\Wox\Images\*.png" SourcePath="..\..\x64\Release\modules\Wox\Images\*.png"/>
+        <File DestinationPath="modules\Wox\Images\*.png" SourcePath="..\..\x64\Release\modules\Wox\Images\*.png"/>
+        <File DestinationPath="modules\Wox\JsonRPC\*.py" SourcePath="..\..\x64\Release\modules\Wox\JsonRPC\*.py"/>
+        <File DestinationPath="modules\Wox\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Languages\*"/>
+        <File DestinationPath="modules\Wox\pinyindb\*" SourcePath="..\..\x64\Release\modules\Wox\pinyindb\*"/>
+        <File DestinationPath="modules\Wox\Themes\*" SourcePath="..\..\x64\Release\modules\Wox\Themes\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Caculator\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Caculator\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Caculator\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Caculator\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Caculator\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Caculator\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Caculator\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Caculator\Images\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Color\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Color\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Color\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Color\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Color\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Color\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Color\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Color\Images\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.ControlPanel\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.ControlPanel\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.ControlPanel\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.ControlPanel\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.ControlPanel\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.ControlPanel\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.ControlPanel\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.ControlPanel\Images\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.ControlPanel\Images\ControlPanelIcons\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.ControlPanel\Images\ControlPanelIcons\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Folder\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Folder\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Folder\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Folder\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Folder\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Folder\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Folder\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Folder\Images\*"/>        
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.PluginIndicator\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.PluginIndicator\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.PluginIndicator\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.PluginIndicator\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.PluginIndicator\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.PluginIndicator\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.PluginIndicator\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.PluginIndicator\Images\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.PluginManagement\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.PluginManagement\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.PluginManagement\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.PluginManagement\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.PluginManagement\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.PluginManagement\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.PluginManagement\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.PluginManagement\Images\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Program\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Program\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Program\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Program\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Program\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Program\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Program\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Program\Images\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Shell\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Shell\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Shell\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Shell\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Shell\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Shell\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Shell\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Shell\Images\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Sys\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Sys\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Sys\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Sys\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Sys\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Sys\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Sys\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Sys\Images\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Url\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Url\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Url\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Url\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Url\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Url\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Url\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Url\Images\*"/>
+        
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.WebSearch\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.WebSearch\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.WebSearch\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.WebSearch\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.WebSearch\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.WebSearch\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.WebSearch\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.WebSearch\Images\*"/>
+
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Everything\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Everything\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Everything\plugin.json" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Everything\plugin.json"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Everything\Languages\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Everything\Languages\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Everything\Images\*" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Everything\Images\*"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Everything\EverythingSDK\x64\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Everything\EverythingSDK\x64\*.dll"/>
+        <File DestinationPath="modules\Wox\Plugins\Wox.Plugin.Everything\EverythingSDK\x86\*.dll" SourcePath="..\..\x64\Release\modules\Wox\Plugins\Wox.Plugin.Everything\EverythingSDK\x86\*.dll"/>
+
+
       </Files>
     </Package>
   </PackageFamily>
