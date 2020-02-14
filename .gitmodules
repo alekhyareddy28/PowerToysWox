@@ -1,0 +1,3 @@
+[submodule "Wox"]
+	path = Wox
+	url = https://github.com/Wox-launcher/Wox.git
