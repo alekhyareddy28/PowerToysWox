@@ -37,19 +37,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations, Version=10.3.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.10.3.0\lib\net\JetBrains.Annotations.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\JetBrains.Annotations.10.3.0\lib\net\JetBrains.Annotations.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Pinyin4Net, Version=2016.4.24.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pinyin4DotNet.2016.4.23.4\lib\net452\Pinyin4Net.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Pinyin4DotNet.2016.4.23.4\lib\net452\Pinyin4Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -103,9 +103,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>cd $(SolutionDir)src\modules\wox\packages\Pinyin4DotNet*\pinyindb\
+    <PreBuildEvent>cd $(SolutionDir)packages\Pinyin4DotNet*\pinyindb\
 xcopy /Y unicode_to_hanyu_pinyin.txt $(TargetDir)pinyindb\
-cd $(SolutionDir)src\modules\wox\packages\NLog.Schema*\content\
+cd $(SolutionDir)packages\NLog.Schema*\content\
 xcopy /Y NLog.xsd $(TargetDir)</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
