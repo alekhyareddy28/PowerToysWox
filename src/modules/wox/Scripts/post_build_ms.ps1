@@ -114,7 +114,7 @@ function Pack-Squirrel-Installer ($path, $version, $output) {
     Move-Item $temp\* $output -Force
     Remove-Item $temp
     
-    $file = "$output\Wox.exe"
+    $file = "$output\WoxUI.exe"
     Write-Host "Filename: $file"
 
     Move-Item "$output\Setup.exe" $file -Force
