@@ -44,7 +44,7 @@ function Copy-Resources ($path, $config) {
     Copy-Item -Recurse -Force $project\Images\* $target\Images\
     Copy-Item -Recurse -Force $path\Plugins\HelloWorldPython $target\Plugins\HelloWorldPython
     Copy-Item -Recurse -Force $path\JsonRPC $target\JsonRPC
-    Copy-Item -Force $path\packages\squirrel*\tools\Squirrel.exe $output\Update.exe
+    Copy-Item -Force $path\..\..\..\packages\squirrel*\tools\Squirrel.exe $output\Update.exe
 }
 
 function Delete-Unused ($path, $config) {
@@ -105,7 +105,7 @@ function Pack-Squirrel-Installer ($path, $version, $output) {
     $icon = "$path\Wox\Resources\app.ico"
     Write-Host "icon: $icon"
     # Squirrel.com: https://github.com/Squirrel/Squirrel.Windows/issues/369
-    New-Alias Squirrel $path\packages\squirrel*\tools\Squirrel.exe -Force
+    New-Alias Squirrel $path\..\..\..\packages\squirrel*\tools\Squirrel.exe -Force
     # why we need Write-Output: https://github.com/Squirrel/Squirrel.Windows/issues/489#issuecomment-156039327
     # directory of releaseDir in fucking squirrel can't be same as directory ($nupkg) in releasify
     $temp = "$output\Temp"
@@ -134,7 +134,7 @@ function Main {
         #$o = "$p\Output\Packages"
         $o = "$p\..\..\..\x64\Release\modules\Packages"
         Validate-Directory $o
-        New-Alias Nuget $p\packages\NuGet.CommandLine.*\tools\NuGet.exe -Force
+        New-Alias Nuget $p\..\..\..\packages\NuGet.CommandLine.*\tools\NuGet.exe -Force
         Pack-Squirrel-Installer $p $v $o
     
         # $isInCI = $env:APPVEYOR
