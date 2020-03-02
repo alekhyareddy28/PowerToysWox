@@ -1,0 +1,12 @@
+{
+  "ID": "8BC6E760-2141-4D0A-95A8-8E5732AADB35",
+  "ActionKeyword": "wi",
+  "Name": "Sample Windows Indexer Plugin",
+  "Description": "Sample Windows Indexer Plugin",
+  "Author": "Alekhya",
+  "Version": "1.0.0",
+  "Language": "csharp",
+  "Website": "https://github.com/Wox-launcher/Wox",
+  "ExecuteFileName": "Wox.PLugin.WindowsIndexer.dll",
+  "IcoPath": "Images\\WindowsIndexerImg.bmp"
+}
