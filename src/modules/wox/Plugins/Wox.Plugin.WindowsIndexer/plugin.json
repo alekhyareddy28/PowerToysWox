@@ -1,6 +1,6 @@
 {
   "ID": "8BC6E760-2141-4D0A-95A8-8E5732AADB35",
-  "ActionKeyword": "wi",
+  "ActionKeyword": "*",
   "Name": "Sample Windows Indexer Plugin",
   "Description": "Sample Windows Indexer Plugin",
   "Author": "Alekhya",
