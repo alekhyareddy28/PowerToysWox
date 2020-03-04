@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Wox.Plugin;
+using System.IO;
+using System.ComponentModel;
 using Wox.Infrastructure.Storage;
-using Wox.Plugin.WindowsIndexer;
+using Wox.Plugin.WindowsIndexer.SearchHelper;
+using Microsoft.Search.Interop;
 
-namespace Windows.Plugin.Indexer
+namespace Wox.Plugin.WindowsIndexer
 {
     class Main : IPlugin, ISavable, IPluginI18n
     {
@@ -21,6 +25,9 @@ namespace Windows.Plugin.Indexer
         // Contains information about the plugin stored in json format
         private PluginJsonStorage<Settings> _storage;
 
+        // To access Windows Search functionalities
+        private readonly WindowsSearchAPI _api = new WindowsSearchAPI();
+
         // To save the configurations of plugins
         public void Save()
         {
@@ -30,13 +37,75 @@ namespace Windows.Plugin.Indexer
         // This function uses the Windows indexer and returns the list of results obtained
         public List<Result> Query(Query query)
         {
-            var result = new Result
+            /*var result = new Result
             {
                 Title = "Windows Indexer Plugin",
                 SubTitle = $"Query: {query.Search}",
                 IcoPath = "Images\\WindowsIndexerImg.bmp"
-            };
-            return new List<Result> { result };
+            };*/
+
+            var results = new List<Result>();
+            if(!string.IsNullOrEmpty(query.Search))
+            {
+                var searchQuery = query.Search;
+                if(_settings.MaxSearchCount <= 0)
+                {
+                    _settings.MaxSearchCount = 50;
+                }
+
+                try
+                {
+                    var searchResultsList = _api.Search(searchQuery, maxCount: _settings.MaxSearchCount).ToList();
+                    foreach (var searchResult in searchResultsList)
+                    {
+                        var path = searchResult.Path;
+
+                        string workingDir = null;
+                        if (_settings.UseLocationAsWorkingDir)
+                            workingDir = Path.GetDirectoryName(path);
+
+                        Result r = new Result();
+                        r.Title = Path.GetFileName(path);
+                        r.SubTitle = path;
+                        r.IcoPath = path;
+                        r.Action = c =>
+                        {
+                            bool hide;
+                            try
+                            {
+                                Process.Start(new ProcessStartInfo
+                                {
+                                    FileName = path,
+                                    UseShellExecute = true,
+                                    WorkingDirectory = workingDir
+                                });
+                                hide = true;
+                            }
+                            catch (Win32Exception)
+                            {
+                                var name = $"Plugin: {_context.CurrentPluginMetadata.Name}";
+                                var msg = "Can't Open this file";
+                                _context.API.ShowMsg(name, msg, string.Empty);
+                                hide = false;
+                            }
+                            return hide;
+                        };
+                        r.ContextData = searchResult;
+                        results.Add(r);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    results.Add(new Result
+                    {
+                        // TODO: Localize the string
+                        Title = "Windows indexer plugin is not running",
+                        IcoPath = "Images\\WindowsIndexerImg.bmp"
+                    });
+                }
+            }
+
+            return results;
         }
 
         public void Init(PluginInitContext context)
