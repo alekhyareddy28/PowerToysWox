@@ -52,7 +52,7 @@ namespace Wox.Plugin.WindowsIndexer.SearchHelper
 
             // --- Perform the query ---
             // create an OleDbConnection object which connects to the indexer provider with the windows application
-            using (System.Data.OleDb.OleDbConnection conn = new OleDbConnection(queryHelper.ConnectionString))
+            using (OleDbConnection conn = new OleDbConnection(queryHelper.ConnectionString))
             {
                 // open the connection
                 conn.Open();
