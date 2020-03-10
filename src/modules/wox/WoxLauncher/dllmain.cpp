@@ -214,7 +214,7 @@ private:
   {
       SHELLEXECUTEINFO sei{ sizeof(sei) };
       sei.fMask = { SEE_MASK_NOCLOSEPROCESS | SEE_MASK_FLAG_NO_UI };
-      sei.lpFile = L"modules\\Wox\\Wox.exe";
+      sei.lpFile = L"modules\\Wox\\WoxUI.exe";
       sei.nShow = SW_SHOWNORMAL;
       ShellExecuteEx(&sei);
 
